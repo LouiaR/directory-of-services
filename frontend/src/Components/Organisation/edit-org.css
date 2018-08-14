@@ -201,6 +201,8 @@ button.edit-org-close:hover {
   overflow-x: hidden;
   width: 100%;
   max-width: 65vw;
+  max-height: 95vh;
+  margin: 3rem 0;
 }
 
 .edit-org .org-close-btn button { 

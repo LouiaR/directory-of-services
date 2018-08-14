@@ -1,8 +1,10 @@
 .org-info div[role=document] {
   width: 100%;
-  padding: .4rem 1rem 3rem;
+  padding: .4rem 1.4rem 3rem;
   overflow: hidden;
   max-width: 65vw;
+  max-height: 98vh;
+  margin: 3rem 0;
 }
 
 .org-info h1 {
