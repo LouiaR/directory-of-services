@@ -33,7 +33,7 @@ export function setOrganisationsList(organisations) {
 export function getOrganisationsList(){
   const sendInfo = async (dispatch) => {
     try {
-      const res = await axios.get(`${api}/service/all`)
+      const res = await axios.get(`${api}/service/branches`)
       return dispatch(setOrganisationsList(res.data))
     } catch (error) {
       return helpers.errorParser(error)

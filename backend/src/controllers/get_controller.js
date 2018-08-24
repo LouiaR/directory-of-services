@@ -11,6 +11,19 @@ module.exports = {
         .query()
         .eager('[branch, branch.[address, address.[location] service, service.[categories]] ]')
         .map(data => helpers.fetchNestedObj(data));
+      return result;
+    } catch (error) {
+      return error;
+    }
+  },
+
+
+  getAllBranches: async () => {
+    try {
+      const result = await Organisation
+        .query()
+        .eager('[branch, branch.[address, address.[location] service, service.[categories]] ]')
+        .map(data => helpers.fetchNested(data));
       return [].concat(...result);
     } catch (error) {
       return error;

@@ -9,7 +9,8 @@ import {
   getBranchesByCategory,
   getBranchesByDay,
   getBranchesByBorough,
-  getBranchesByPostcode
+  getBranchesByPostcode,
+  getAllBranches
 } from '../controllers/get_controller';
 
 const router = express.Router();
@@ -150,6 +151,15 @@ router.put('/organisation/edit', async (req, res) => {
 router.get('/all', async (req, res) => {
   try {
     await getAllOrgainisation().then(services =>
+      res.status(200).json(services));
+  } catch (err) {
+    res.status(502).json(err)
+  }
+});
+
+router.get('/branches', async (req, res) => {
+  try {
+    await getAllBranches().then(services =>
       res.status(200).json(services));
   } catch (err) {
     res.status(502).json(err)
