@@ -11,7 +11,7 @@ module.exports = {
         .query()
         .eager('[branch, branch.[address, address.[location] service, service.[categories]] ]')
         .map(data => helpers.fetchNestedObj(data));
-      return result;
+      return [].concat(...result);
     } catch (error) {
       return error;
     }

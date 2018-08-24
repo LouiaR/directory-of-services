@@ -1,19 +1,86 @@
-function fetchNestedObj(object) {
-  if (object) {
-    return Object.keys(object)
-      .reduce((accumulator, key) => {
-        if (typeof object[key] !== 'object') {
-          accumulator[key] = object[key];
-          return accumulator;
+function fetchNestedObj(obj) {
+  return obj.branch.map(itemObj => {
+    let branches;
+    const { 
+      org_name,
+      website
+    } = obj;
+    const {
+      org_id,
+      borough,
+      project,
+      clients,
+      tag,
+      address,
+      service
+    } = itemObj;
+
+    branches = ({
+      org_name,
+      website,
+      org_id,
+      borough,
+      project,
+      clients,
+      tag
+    });
+
+    address.map(org => {
+      const { branch_id, area, postcode, telephone, email_address, location } = org
+      branches = {
+        ...branches,
+        branch_id,
+        area,
+        postcode,
+        telephone,
+        email_address
+      }
+
+      // Get location key value
+      location.map(locaitem => {
+        const { address_id, lat, long } = locaitem;
+        branches = {
+          ...branches,
+          address_id,
+          lat,
+          long
         }
-        return {
-          ...accumulator,
-          ...fetchNestedObj(object[key])
+      })
+    })
+
+    // Get service key value
+    service.map(serviceItem => {
+      const { 
+        service_days,
+        service,
+        process, 
+        categories
+      } = serviceItem;
+
+      branches = { 
+        ...branches,
+        service_days,
+        service,
+        process
+      };
+
+      categories.map(cat => {
+        const { 
+          service_id,
+           cat_name
+        } = cat;
+
+        branches = { 
+          ...branches,
+          service_id,
+          cat_name
         }
-      }, {});
-  }
-  return null;
+    });
+    })
+    return branches;
+  })
 }
+
 
 // Part of calculation distance function
 function deg2rad(deg) {
