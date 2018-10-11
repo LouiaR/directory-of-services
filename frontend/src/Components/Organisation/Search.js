@@ -20,39 +20,39 @@ const organisations = [
 ];
 const days = [
   {
-    id : 1,
+    id: 1,
     day: "Monday"
   },
   {
-    id : 2,
+    id: 2,
     day: "Tuesday"
   },
   {
-    id : 3,
+    id: 3,
     day: "Wednesday"
   },
   {
-    id : 4,
+    id: 4,
     day: "Thursday"
   },
   {
-    id : 5,
+    id: 5,
     day: "Friday"
   },
   {
-    id : 6,
+    id: 6,
     day: "Saturday"
   },
   {
-    id : 7,
+    id: 7,
     day: "Sunday"
   },
   {
-    id : 8,
+    id: 8,
     day: "Mon-Fri"
   },
   {
-    id : 9,
+    id: 9,
     day: "All"
   }
 ];
@@ -82,37 +82,37 @@ class Search extends React.Component {
           <span className="postcode-field">
             <Autosuggest
               theme={{
-                container               : classes.container,
+                container: classes.container,
                 suggestionsContainerOpen: classes.suggestionsContainerOpen,
-                suggestionsList         : classes.suggestionsList,
-                suggestion              : classes.suggestion
+                suggestionsList: classes.suggestionsList,
+                suggestion: classes.suggestion
               }}
-              className                   = "post-code-suggesition"
-              renderInputComponent        = {helpers.renderInput}
-              suggestions                 = {this.state.suggestions}
-              onSuggestionsFetchRequested = {this.handleSuggestionsFetchRequested}
-              onSuggestionsClearRequested = {this.handleSuggestionsClearRequested}
-              renderSuggestionsContainer  = {helpers.renderSuggestionsContainer}
-              getSuggestionValue          = {helpers.getSuggestionValue}
-              renderSuggestion            = {helpers.renderSuggestion}
-              inputProps                  = {{
+              className="post-code-suggesition"
+              renderInputComponent={helpers.renderInput}
+              suggestions={this.state.suggestions}
+              onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
+              onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
+              renderSuggestionsContainer={helpers.renderSuggestionsContainer}
+              getSuggestionValue={helpers.getSuggestionValue}
+              renderSuggestion={helpers.renderSuggestion}
+              inputProps={{
                 classes,
                 placeholder: "Enter postcode or borough...",
-                name       : "postCode",
-                value      : this.props.searchInput,
-                onChange   : this.props.handlePostCodeChange
+                name: "postCode",
+                value: this.props.searchInput,
+                onChange: this.props.handlePostCodeChange
               }}
             />
             <button
-              variant   = "raised"
-              size      = "small"
-              color     = "secondary"
-              className = {
+              variant="raised"
+              size="small"
+              color="secondary"
+              className={
                 !this.props.isPostcode || this.props.searchInput.length < 1
                   ? "hidden"
-                  :  "clear-postcode"
+                  : "clear-postcode"
               }
-              onClick = {this.props.clearPostcodeField}
+              onClick={this.props.clearPostcodeField}
             >
               <i className="material-icons" size="small" variant="raised">
                 close
@@ -121,12 +121,12 @@ class Search extends React.Component {
             <span className="postcode-error">{this.props.postcodeError}</span>
           </span>
           <Button
-            variant = "fab"
+            variant="fab"
             mini
-            color      = "secondary"
-            onClick    = {this.props.handlePostSearch}
-            aria-label = "add"
-            className  = "search-button"
+            color="secondary"
+            onClick={this.props.handlePostSearch}
+            aria-label="add"
+            className="search-button"
           >
             <i className="material-icons">search</i>
           </Button>
@@ -135,12 +135,12 @@ class Search extends React.Component {
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="age-simple">Day</InputLabel>
             <Select
-              className  = "select-field-container day-small-screen"
-              value      = {this.props.day}
-              onChange   = {this.props.handleSelectedDay}
-              inputProps = {{
+              className="select-field-container day-small-screen"
+              value={this.props.day}
+              onChange={this.props.handleSelectedDay}
+              inputProps={{
                 name: "day",
-                id  : "day"
+                id: "day"
               }}
             >
               <MenuItem value="">
