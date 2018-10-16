@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
@@ -74,8 +74,8 @@ class UsersPage extends Component {
       userForm = null;
     } else {
       userForm = (
-        <Fragment>
-          <h2 className="add-users"> Add User </h2>
+        <div className="invite-user">
+          <h2 className="add-users"> Invite to DOS </h2>
           <AddUser
             handleSubmit={this.handleSubmit}
             handleFieldUpdate={this.handleFieldUpdate}
@@ -84,7 +84,7 @@ class UsersPage extends Component {
             role={this.state.role}
             savedChangesSuccessfully={this.savedChangesSuccessfully}
           />
-        </Fragment>
+        </div>
       );
       userList = null;
     }

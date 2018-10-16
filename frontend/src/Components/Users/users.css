@@ -31,10 +31,10 @@
 }
 
 .add-user {
-  display: grid;
-  grid-template-columns: 2fr 2fr 2fr 1fr;
-  grid-gap: 1em;
+  display: flex;
+  flex-direction: column;
 }
+
 .add-user .select-button {
   display: block !important;
   margin-top: -0.1em;
@@ -43,47 +43,47 @@
 .add-user .form-control-filed {
   width: 100% !important;
 }
+
 .add-user .add-user-button {
-  background: #519889;
+  background: #1abcd4;
   color: #fff;
   padding: 8px 0.5em;
-  margin-top: 1em;
   border: navajowhite;
   border-radius: 0.1em;
   font-size: 1em;
-  box-shadow: 0px 2px 4px 2px #bbb;
-  grid-column: 4/4;
-}
-.add-user .add-user-button:hover {
-  background: #519889;
-  color: #fff;
-  box-shadow: 0px 2px 4px 2px #bbb;
+  margin-top: 23px;
+  border-radius: 3px;
 }
 
-.add-user div :after{ 
+.add-user .add-user-button:hover {
+  background: #5aac44
+}
+
+.add-user div :after {
   background-color: #1abcd4;
 }
 
 .add-users {
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 10px;
   color: #45bdd4e0;
   text-transform: uppercase;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
+  text-align: center;
 }
 
-.delete-notification{
+.delete-notification {
   background: #000;
 }
-.delete-notification div h2{
+.delete-notification div h2 {
   color: yellow;
 }
 
-button.delete{
-  top: 40px ;
+button.delete {
+  top: 40px;
   left: 0px;
-  width: 80px ;
-  height: 40px ;
-  padding: 9px ;
+  width: 80px;
+  height: 40px;
+  padding: 9px;
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -92,12 +92,62 @@ button.delete{
   font-size: 0.875rem;
 }
 
-.delete .material-icons{
-  font-size: 1em
+.delete .material-icons {
+  font-size: 1em;
 }
 
 .users-info {
   padding: 3rem 0 3rem 2rem;
+}
+
+/********************************        Add user form        ************************************************************/
+.invite-user {
+  width: 60%;
+  margin: 1rem auto 0;
+}
+
+.add-message {
+  display: grid;
+}
+
+.add-users {
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(9,45,66,.13);
+}
+
+.users form.add-user div.add-message div::before,
+.users form.add-user div.add-message div div::before,
+.users form.add-user div.add-message div::after {
+  background: transparent;
+}
+
+label.email + div {
+  padding-left: 10px;
+}
+
+label.message + div,
+label.email + div {
+  border: 1px solid;
+  background: transparent;
+  border-radius: 3px;
+  display: block;
+  line-height: 20px;
+  padding: 6px 8px;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 85ms;
+  transition-timing-function: ease;
+}
+
+label.message + div:hover,
+label.message + div:focus,
+label.email + div:hover,
+label.email + div:focus {
+  border: 1px solid #5ba4cf;
+  box-shadow: 0 0 0 1px #5ba4cf;
+}
+
+label.message + div {
+  height: 50vh;
 }
 
 /* .MuiInput-underline-238:before */
