@@ -21,7 +21,7 @@
   display: block;
   text-decoration: none;
   padding-left: 2em;
-  color: #ffffff;
+  color: #b8b8b9;
   border-color: transparent;
 }
 
@@ -100,4 +100,13 @@ button.delete{
   padding: 3rem 0 3rem 2rem;
 }
 
+.users-menu a[target="blank"] {
+  padding: 20px 0 10px 2em;
+  color: #b8b8b9;
+}
+
+.users-menu a:hover,
+.users-menu a:focus {
+  color: white;
+}
 /* .MuiInput-underline-238:before */
