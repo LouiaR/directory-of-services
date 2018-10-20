@@ -1,31 +1,74 @@
 import React, { Fragment, Component } from 'react';
 import TextField from 'material-ui/TextField';
+import NotificationSystem from 'react-notification-system';
 import Button from 'material-ui/Button';
+import axios from 'axios';
 
 class AddUser extends Component {
   state = {
     email: '',
     message: '',
+    notificationSystem: null,
   };
+
+  componentDidMount() {
+    this.setState({
+      notificationSystem: this.refs.savedChanges,
+    });
+  }
 
   onChangeHandler = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
+  
+  savedChangesSuccessfully = (message) => {
+    this.state.notificationSystem.addNotification({
+      title: 'Success',
+      message,
+      level: 'success',
+    });
+  };
 
-  handleSubmit = e => {
+  failedSavedChanges = (message) => {
+    this.state.notificationSystem.addNotification({
+      title: 'Unsuccess',
+      message,
+      level: 'error',
+    });
+  };
+
+  handleSubmit = async e => {
     e.preventDefault();
+    const { email, message } = this.state;
+    const api = process.env.REACT_APP_API_URL || process.env.REACT_APP_LOCALHOST_API_URL;
+    try {
+      axios.post(`${api}/invite`, ({email, message}))
+      .then(info => {
+        this.setState({
+          email: '',
+          message: '',
+        })
+        this.savedChangesSuccessfully(info.data.message)
+        return info.data 
+      })
+    } catch(err) {
+      this.failedSavedChanges('Your message was not send please try again')
+      return err
+    };
   };
 
   render() {
     const { email, message } = this.state;
-    const disableBtn = (/\S+@\S+\.\S+/).test(email);
+    const disableBtn = /\S+@\S+\.\S+/.test(email) ;
     return (
       <Fragment>
         <form className="add-user">
+          <NotificationSystem ref="savedChanges" />
           <div className="add-message">
             <TextField
+              required
               label="Email"
               id="filled-full-width"
               placeholder="Email"
@@ -33,6 +76,7 @@ class AddUser extends Component {
               value={email}
               onChange={this.onChangeHandler}
               margin="normal"
+              helperText="If you send invitation to more than one person use comma to seperate email"
               variant="filled"
               InputLabelProps={{
                 shrink: true,
@@ -42,9 +86,11 @@ class AddUser extends Component {
           </div>
           <div className="add-message message">
             <TextField
+              required
               label="Message"
               id="filled-full-width"
-              placeholder="I'm working on this project and wanted to share it with you!"
+              placeholder="I'm working on this project and wanted to share it with you! Please include your detail so that the receiver can identify you."
+              helperText="Please enter a message before you send. Please include your detail so that the receiver can identify you"
               multiline
               name="message"
               value={message}
@@ -58,14 +104,14 @@ class AddUser extends Component {
             />
           </div>
           <Button
-            disabled={!disableBtn} 
+            disabled={!disableBtn}
             variant="raised"
             size="small"
             type="submit"
             className="add-user-button"
             onClick={this.handleSubmit}
           >
-          sent invitation
+            sent invitation
           </Button>
         </form>
       </Fragment>
