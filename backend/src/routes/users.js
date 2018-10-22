@@ -59,7 +59,7 @@ router.delete('/users/:userId', async (req, res) => {
     const response = await deleteUser(req.params.userId);
     res
       .status(200)
-      .json({ success: true, message: 'user deleted successfully', response });
+      .json({ success: true, message: 'User deleted successfully', response });
   } catch (err) {
     res
       .status(502)
@@ -102,7 +102,7 @@ router.put('/users/:userId', async (req, res) => {
         organisation
       }).then(() =>
         res.json({
-          message: 'user updated successfully'
+          message: 'User updated successfully'
         }));
     });
   });
