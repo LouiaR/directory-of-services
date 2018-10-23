@@ -17,17 +17,17 @@
   color: #bbb;
   justify-self: flex-end;
 }
+
 .users-menu a {
   display: block;
   text-decoration: none;
   padding-left: 2em;
-  color: #ffffff;
+  color: #b8b8b9;
   border-color: transparent;
 }
 
-.users-menu .menu-header {
-  color: #1abcd4;
-  padding: 0 0 1em 2em;
+.users-menu a {
+  padding: 0 0 1em 1.4rem;
 }
 
 .add-user {
@@ -68,7 +68,6 @@
   color: #45bdd4e0;
   text-transform: uppercase;
   margin-left: 0.5rem;
-  text-align: center;
 }
 
 .delete-notification {
@@ -150,4 +149,21 @@ label.message + div {
   height: 50vh;
 }
 
+.users-menu {
+  padding: 0 10px;
+}
+
+.users-menu a[target='blank'] {
+  padding: 8px 20px;
+  background: #1abcd4;
+  border: 1px solid transparent;
+  margin-top: 30px;
+  border-radius: 7px;
+  color: #fff;
+}
+
+.users-menu a:hover,
+.users-menu a:focus {
+  color: white;
+}
 /* .MuiInput-underline-238:before */
