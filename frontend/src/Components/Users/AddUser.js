@@ -3,11 +3,12 @@ import TextField from 'material-ui/TextField';
 import NotificationSystem from 'react-notification-system';
 import Button from 'material-ui/Button';
 import axios from 'axios';
+import './user-table.css';
 
 class AddUser extends Component {
   state = {
     email: '',
-    message: '',
+    message: "I'm working on this project and wanted to share it with you! Please include your detail so that the receiver can identify you.",
     notificationSystem: null,
   };
 
@@ -48,7 +49,7 @@ class AddUser extends Component {
       .then(info => {
         this.setState({
           email: '',
-          message: '',
+          message: "I'm working on this project and wanted to share it with you! Please include your detail so that the receiver can identify you."
         })
         this.savedChangesSuccessfully(info.data.message)
         return info.data 
