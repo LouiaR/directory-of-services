@@ -8,13 +8,18 @@ import './user-table.css';
 class AddUser extends Component {
   state = {
     email: '',
-    message: "I'm working on this project and wanted to share it with you! Please include your detail so that the receiver can identify you.",
+    message: "",
     notificationSystem: null,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({
       notificationSystem: this.refs.savedChanges,
+      message: `
+      Hi, 
+      This is an invitation to join the NGO Service Directory, where you will 
+      be able to search information on organisations supporting refugees and other 
+      people in need.`
     });
   }
 
@@ -49,7 +54,7 @@ class AddUser extends Component {
       .then(info => {
         this.setState({
           email: '',
-          message: "I'm working on this project and wanted to share it with you! Please include your detail so that the receiver can identify you."
+          message: ''
         })
         this.savedChangesSuccessfully(info.data.message)
         return info.data 
@@ -112,7 +117,7 @@ class AddUser extends Component {
             className="add-user-button"
             onClick={this.handleSubmit}
           >
-            sent invitation
+            send invitation
           </Button>
         </form>
       </Fragment>

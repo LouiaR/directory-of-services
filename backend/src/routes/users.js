@@ -226,7 +226,7 @@ router.post('/signup', async (req, res) => {
       if (user.length > 0) {
         res.json({
           success: false,
-          message: 'User is already found'
+          message: 'User already exist'
         });
       } else {
         bcrypt.genSalt(10, (err, salt) => {
@@ -249,9 +249,17 @@ router.post('/signup', async (req, res) => {
                     from: config.SITE_EMAIL,
                     to: `${email}`,
                     subject: 'Welcome to DOS',
-                    text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n
-                    Please click on the following link, or paste this into your browser to complete the process:\n\n
-                    If you did not request this, please ignore this email and your password will remain unchanged.\n`
+                    text: `
+                    Hello,
+                    Welcome to the Welcome Guide, and thanks for signing up. 
+                    The Welcome Guide is a directory of service for case workers who work with asylum seekers, refugeees and other 
+                    people in need.
+                    This beta service was developed by developers from CodeYourFuture with the 
+                    support of Help Refugees. We appreciate your feedback to improve this
+                    service.
+                      
+                    Thanks, 
+                    CYF / HR`
                   },
                   (errors, info) => {
                     if (errors) {
@@ -454,15 +462,27 @@ router.post('/reset/:token', async (req, res) => {
   }
 });
 
+// Invite user to use the service
 router.post('/invite', async (req, res) => {
   const { email, message } = req.body;
+  const arrEmail = email.split(',');
   try {
-    await sendEmail({
-      from: config.SITE_EMAIL,
-      to: email,
-      subject: 'invite',
-      text: message
-    });
+    await arrEmail.map(emai =>
+      sendEmail({
+        from: config.SITE_EMAIL,
+        to: emai,
+        subject: 'invite',
+        text: `${message} 
+  
+      Join by using this link https://dos.codeyourfuture.io.
+  
+      This beta service was developed by developers from CodeYourFuture with the 
+      support of Help Refugees. We appreciate your feedback to improve this
+      service.
+        
+      Thanks, 
+      CYF / HR`
+      }))
     res.status(200).json({
       success: true,
       message: 'Your invitation has been sent!'
