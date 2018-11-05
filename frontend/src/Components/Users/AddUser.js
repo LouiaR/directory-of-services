@@ -49,15 +49,11 @@ class AddUser extends Component {
     const { email, message } = this.state;
     const api = process.env.REACT_APP_API_URL || process.env.REACT_APP_LOCALHOST_API_URL;
     try {
-      axios.post(`${api}/invite`, ({email, message}))
-      .then(info => {
-        this.setState({
-          email: '',
-          message: ''
-        })
-        this.savedChangesSuccessfully(info.data.message)
-        return info.data 
+      const info = axios.post(`${api}/invite`, ({email, message}));
+      this.setState({
+        email: '',
       })
+      this.savedChangesSuccessfully(info.data.message)
     } catch(err) {
       this.failedSavedChanges('Your message was not send please try again')
       return err
