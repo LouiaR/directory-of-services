@@ -8,18 +8,17 @@ import './user-table.css';
 class AddUser extends Component {
   state = {
     email: '',
-    message: "",
+    message: `
+    Hi, 
+    This is an invitation to join the NGO Service Directory, where you will 
+    be able to search information on organisations supporting refugees and other 
+    people in need.`,
     notificationSystem: null,
   };
 
   async componentDidMount() {
     this.setState({
-      notificationSystem: this.refs.savedChanges,
-      message: `
-      Hi, 
-      This is an invitation to join the NGO Service Directory, where you will 
-      be able to search information on organisations supporting refugees and other 
-      people in need.`
+      notificationSystem: this.refs.savedChanges, 
     });
   }
 
