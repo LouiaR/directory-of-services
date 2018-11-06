@@ -10,13 +10,12 @@ class AddUser extends Component {
     email: '',
     message: `
     Hi, 
-    This is an invitation to join the NGO Service Directory, where you will 
-    be able to search information on organisations supporting refugees and other 
-    people in need.`,
+    This is an invitation to join the NGO Service Directory, where you will be able to search information 
+    on organisations supporting refugees and other people in need.`,
     notificationSystem: null,
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     this.setState({
       notificationSystem: this.refs.savedChanges, 
     });
@@ -49,7 +48,7 @@ class AddUser extends Component {
     const { email, message } = this.state;
     const api = process.env.REACT_APP_API_URL || process.env.REACT_APP_LOCALHOST_API_URL;
     try {
-      const info = axios.post(`${api}/invite`, ({email, message}));
+      const info = await axios.post(`${api}/invite`, ({email, message}));
       this.setState({
         email: '',
       })
